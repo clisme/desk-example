@@ -1,0 +1,64 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "Hello World!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist-with-build": "vite build && electron-builder",
+    "dist-mirror": "set ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ && electron-builder",
+    "dist-mirror-with-build": "vite build && set ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ && electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jane Doe",
+  "license": "MIT",
+  "build": {
+    "appId": "com.example.my-electron-app",
+    "productName": "MyElectronApp",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "preload.js",
+      "index.html",
+      "views/**/*"
+    ],
+    "npmRebuild": false,
+    "buildDependenciesFromSource": true
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "electron": "38.0.0",
+    "electron-builder": "^26.0.12",
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
+    "element-plus": "^2.11.5",
+    "element-ui": "^2.15.14",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.0"
+  }
+}
